@@ -1,0 +1,11 @@
+{
+  "name": "kltn-restohub",
+  "version": "1.0.0",
+  "private": true,
+  "description": "RestoHub - Fullstack Restaurant Management System",
+  "scripts": {
+    "dev": "start-dev.bat",
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev"
+  }
+}

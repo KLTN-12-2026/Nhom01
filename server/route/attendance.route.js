@@ -1,0 +1,17 @@
+import { Router } from 'express';
+import auth from '../middleware/auth.js';
+import requireRole from '../middleware/roleAuth.js';
+import { staffOnly } from '../middleware/shiftAccess.js';
+import * as controller from '../controllers/attendance.controller.js';
+const router = Router();
+const manager = requireRole('MANAGER');
+router.use(auth, staffOnly);
+router.post('/check-in', manager, controller.checkIn);
+router.post('/check-out', manager, controller.checkOut);
+router.get('/current', controller.getCurrentAttendance);
+router.get('/employee/:employeeId', controller.getAttendanceByEmployee);
+router.get('/date/:date', manager, controller.getAttendanceByDate);
+router.get('/roster', manager, controller.getRoster);
+router.post('/correct', manager, controller.correctAttendance);
+router.post('/close-period', manager, controller.closeAttendancePeriod);
+export default router;
